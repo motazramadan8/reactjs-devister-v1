@@ -53,7 +53,7 @@ const CategoriesTable = () => {
                 <tr key={category?._id}>
                   <td>{index + 1}</td>
                   <td>
-                    <b>{category?.title}</b>
+                    <b>{category.title}</b>
                   </td>
                   <td>
                     <div className="table-button-group">
