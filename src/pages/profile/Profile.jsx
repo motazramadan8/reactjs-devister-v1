@@ -129,7 +129,7 @@ const Profile = () => {
                 />
                 {file && (
                   <button className="upload-profile-photo-btn" type="submit">
-                    Upload
+                    Save
                   </button>
                 )}
               </form>
