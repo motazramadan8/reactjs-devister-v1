@@ -1,0 +1,20 @@
+.posts-page {
+    display: flex;
+    align-items: flex-start;
+    padding: 30px;
+    min-height: calc(100vh - 200px);
+}
+
+/* Responsive */
+@media (max-width: 700px) {
+    .posts-page {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+@media (max-width: 520px) {
+    .posts-page {
+        padding: 15px;
+    }
+}

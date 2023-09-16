@@ -1,0 +1,134 @@
+.table-container {
+    display: flex;
+    height: calc(100vh - 130px);
+    overflow: hidden;
+}
+.table-wrapper {
+    flex: 10;
+    padding: 20px;
+    overflow-y: scroll;
+}
+ /* Scrollbar Classes For Google Chrome */
+.table-wrapper::-webkit-scrollbar {
+    width: 8px;
+}
+
+.table-wrapper::-webkit-scrollbar-track {
+    background-color: var(--body-color);
+}
+
+.table-wrapper::-webkit-scrollbar-thumb {
+    background-color: var(--dark-color);
+    border-radius: 15px;
+}
+.table-title {
+    font-size: 30px;
+    color: var(--main-color);
+    margin-bottom: 15px;
+    border-bottom: 2px solid var(--main-color);
+    padding-bottom: 3px;
+    width: max-content;
+}
+.table {
+    width: 100%;
+    text-align: left;
+    border-collapse: collapse;
+}
+th , td {
+    border: 1px solid #242526;
+    padding: 10px;
+}
+th {
+    background-color: var(--logo-color);
+    color: var(--body-color);
+}
+tr:nth-child(even) {
+    background-color: #1d1e1e;
+}
+tr:hover {
+    background-color: rgb(41, 41, 41);
+}
+.table-image {
+    display: flex;
+    align-items: center;
+}
+.table-user-image {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+.table-username {
+    font-weight: 500;
+    font-size: 17px;
+    margin-left: 5px;
+}
+.table-button-group {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+.table-button-group button {
+    border-radius: 5px;
+    font-size: 17px;
+    font-weight: 500;
+    padding: 5px;
+    cursor: pointer;
+    transition: 0.4s;
+}
+.table-button-group .view-btn {
+    background-color: var(--body-color);
+    border: 1px solid var(--logo-color);
+    font-weight: 400;
+}
+.table-button-group .view-btn a {
+    color: var(--logo-color);
+}
+.table-button-group .view-btn:hover {
+    background-color: var(--logo-color);
+    color: var(--body-color);
+}
+.table-button-group .view-btn:hover a {
+    color: var(--body-color);
+}
+.delete-btn {
+    background-color: var(--body-color);
+    border: 1px solid var(--red-color);
+    color: var(--red-color);
+}
+.delete-btn:hover {
+    background-color: var(--red-color);
+    color: var(--body-color);
+}
+.delete-btn:hover a {
+    color: var(--body-color);
+}
+/* Responsive */
+@media (max-width: 720px) {
+    .table-wrapper {
+        padding: 15px;
+    }
+    .table-button-group {
+        flex-wrap: wrap;
+    }
+    .table-button-group button {
+        width: 100%;
+        margin: 10px 0;
+    }
+    th, td {
+        padding: 5px;
+    }
+    .table-image {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+}
+@media (max-width: 520px) {
+    .table-wrapper {
+        padding: 5px;
+    }
+    th, td {
+        padding: 2px;
+    }
+}

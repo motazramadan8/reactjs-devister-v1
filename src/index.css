@@ -1,0 +1,88 @@
+:root {
+    --main-color: #efefef;
+    --primary-color: #1d2d3d;
+    --secondary-color:#495e74 ;
+    --gray-color: #778697;
+    --dark-color: #242526;
+    --body-color: #18191A;
+    --btn-color: #3A3B3C;
+    --blue-color: #0275d8;
+    --green-color: #27ae60;
+    --green-sea-color: #16a085;
+    --pumpkin-color: #d35400;
+    --red-color: #C1564C;
+    --white-color: #B0B3B8;
+    --logo-color: #F6BE00;
+    --post-color: #E4E6EB;
+  }
+  
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', sans-serif;
+    /* font-family: 'Fira Code', monospace; */
+  }
+  
+  body {
+    background-color: var(--body-color);
+    overflow-x: hidden;
+    color: var(--white-color);
+  }
+  
+  a {
+    text-decoration: none;
+  }
+  
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  input:focus,
+  select:focus,
+  textarea:focus {
+    outline: none;
+  }
+  
+  /* Scrollbar Classes For Google Chrome */
+  html::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  html::-webkit-scrollbar-track {
+    background-color: var(--body-color);
+  }
+  
+  html::-webkit-scrollbar-thumb {
+    background-color: var(--dark-color);
+    border-radius: 15px;
+  }
+
+  ::-moz-selection { /* Code for Firefox */
+    color: var(--body-color);
+    background: var(--logo-color);
+  }
+  
+  ::selection {
+    color: var(--body-color);
+    background: var(--logo-color);
+  }
+  
+.loader {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+}
+
+@media (max-width: 938px) {
+  .loader {
+    width: 500px;
+  }
+}
+@media (max-width: 600px) {
+  .loader {
+    width: 400px;
+  }
+}

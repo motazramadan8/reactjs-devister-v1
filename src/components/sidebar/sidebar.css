@@ -1,0 +1,67 @@
+.sidebar {
+    margin-left: 20px;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 100px;
+    width: 25%;
+    height: 450px;
+    overflow: auto;
+}
+.sidebar-title {
+    color: var(--white-color);
+    text-align: center;
+    padding: 5px;
+    font-size: 24px;
+    border-top: 1px solid var(--white-color);
+    border-bottom: 1px solid var(--white-color);
+    position: sticky;
+    top: 0px;
+    z-index: 10;
+    background-color: #18191A;
+}
+.sidebar-links {
+    padding: 10px;
+}
+.sidebar-link {
+    margin: 10px 0;
+    font-size: 17px;
+    font-weight: 500;
+    color: var(--white-color);
+    cursor: pointer;
+    background-color: #242526;
+    text-align: center;
+    padding: 5px;
+    position: relative;
+    text-transform: capitalize;
+    display: block;
+    clip-path: polygon(100% 0%, 100% 50%, 100% 100%, 5% 100%, 0% 50%, 5% 0);
+    transition: 0.4s;
+}
+
+.sidebar-link:hover {
+  background-color: var(--logo-color);
+  color: var(--body-color);
+}
+
+/* Scroll */
+  /* Scrollbar Classes For Google Chrome */
+  .sidebar::-webkit-scrollbar {
+    width: 5px;
+  }
+  
+  .sidebar::-webkit-scrollbar-track {
+    background-color: var(--body-color);
+  }
+  
+  .sidebar::-webkit-scrollbar-thumb {
+    background-color: var(--dark-color);
+  }
+  
+
+/* Responsive */
+@media (max-width: 700px) {
+    .sidebar {
+        margin-left: 0;
+        width: 100%;
+    }
+}
