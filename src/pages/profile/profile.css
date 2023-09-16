@@ -75,7 +75,7 @@ input[type="file"] {
     font-size: 14px;
     font-weight: bold;
     color: var(--main-color);
-    right: -55px;
+    right: -62px;
 }
 .upload-profile-photo-btn:hover {
     background-color: var(--logo-color);
