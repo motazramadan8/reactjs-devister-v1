@@ -40,6 +40,7 @@ const CommentList = ({ postAuthor, comments }) => {
         swal("Comment Has Been Deleted Successfully", {
           icon: "success",
         });
+        window.location.reload()
       }
     });
   };
