@@ -79,7 +79,7 @@ const CommentList = ({ postAuthor, comments }) => {
               {comment?.text}
             </p>
             {
-              user?._id === comment?.user?._id && (
+              user?._id === comment?.user && (
                 <div className="comment-item-icon-wrapper">
                   <BsPencilSquare
                     className="icon"
@@ -89,7 +89,8 @@ const CommentList = ({ postAuthor, comments }) => {
                 </div>
               )
             }
-            {user?._id === postAuthor && user?._id !== comment?.user?._id ? (
+            {console.log(comment?.user)}
+            {user?._id === postAuthor || user?._id === comment?.user ? (
               <div className="comment-item-icon-wrapper">
                 <BsTrash3 className="icon" onClick={() => deleteCommentHandler(comment?._id)} />
               </div>
