@@ -53,6 +53,7 @@ export function deleteComment(commentId) {
       });
       dispatch(commentActions.deleteComment(commentId))
       dispatch(postActions.setIsCommentDeleted());
+      window.location.reload()
     } catch (error) {
       toast.warn(error.response.data.msg, toastOptions);
     }
