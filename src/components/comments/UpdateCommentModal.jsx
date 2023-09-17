@@ -19,7 +19,6 @@ const UpdateCommentModal = ({ setUpdateComment, commentForUpdate }) => {
     
     dispatch(updateComment({ text }, commentForUpdate?._id))
     setUpdateComment(false)
-    window.location.reload()
   }
 
   return (
