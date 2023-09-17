@@ -149,7 +149,7 @@ const PostDetails = () => {
                 <h1 style={{fontSize:"15px",color:"red",fontWeight:"300",margin:"0"}}>Please Login To Add Comment</h1>
               )
             }
-            <CommentList postId={post?.id} postAuthor={post?.user?.id} />
+            <CommentList comments={post?.comments} postAuthor={post?.user?.id} />
             {fullPhoto  && <FullPostImage setFullPhoto={setFullPhoto} post={post} file={file} />}
             {updatePost  && <UpdatePostModal post={post} setUpdatePost={setUpdatePost} />}
         </section>
