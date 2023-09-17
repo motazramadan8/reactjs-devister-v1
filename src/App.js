@@ -10,7 +10,6 @@ import PostPage from "./pages/post-page/PostPage";
 import CreatePost from "./pages/create-post/CreatePosts";
 import AdminDashboard from "./pages/admin/AdminDashboard";
 import PostDetails from "./pages/post-details/PostDetails";
-import Logo from "./images/logo png.png";
 import "./index.css";
 import Category from "./pages/category/Category";
 import Profile from "./pages/profile/Profile";
@@ -26,22 +25,11 @@ import CheckConnection from "./components/check-connection/CheckConnection";
 import VerifyEmail from "./pages/verify-email/VerifyEmail";
 
 const App = () => {
-  const [isLoading, setIsLoading] = useState(true);
   const { user } = useSelector((state) => state.auth);
-
-  useEffect(() => {
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 1500);
-  }, []);
 
   return (
     <CheckConnection>
       <BrowserRouter>
-        <div>
-          {isLoading ? (
-            <img className="loader" src={Logo} alt="Logo" />
-          ) : (
             <>
               <Header />
               <Routes>
@@ -111,8 +99,6 @@ const App = () => {
                 <Route path="*" element={<NotFound />} />
               </Routes>
             </>
-          )}
-        </div>
       </BrowserRouter>
     </CheckConnection>
   );
