@@ -35,6 +35,7 @@ export function updateComment(comment, commentId) {
         }
       );
       dispatch(postActions.updateCommentPost(data));
+      window.location.reload()
       toast.success("Comment Updated Successfully", toastOptions);
     } catch (error) {
       toast.warn(error.response.data.msg, toastOptions);
