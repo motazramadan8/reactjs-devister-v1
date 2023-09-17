@@ -16,7 +16,6 @@ const AddComment = ({ postId }) => {
       return toast.warn("Comment Is Required", toastOptions);
 
     dispatch(createComment({ text, postId}))
-    window.location.reload()
     setText("")
   };
   return (
