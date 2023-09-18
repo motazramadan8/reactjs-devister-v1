@@ -52,6 +52,11 @@ const App = () => {
                   path="/profile/:id"
                   element={user ? <Profile /> : <Navigate to="/" />}
                 />
+                <Route
+                  path="/posts/profile/:id"
+                  element={user ? <Profile /> : <Navigate to="/" />}
+                />
+
 
                 <Route path="posts">
                   <Route index element={<PostPage />} />
