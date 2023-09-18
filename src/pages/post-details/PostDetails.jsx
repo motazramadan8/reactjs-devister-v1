@@ -84,7 +84,18 @@ const PostDetails = () => {
             </div>
             <h1 className="post-details-title">{post?.title}</h1>
             <p className="post-details-description">
-              {post?.description}
+              {
+                post?.description?.split(" ").map((word, index) => {
+                  try {
+                    const url = new URL(word);
+                    return (
+                      <a key={index} style={{ textDecoration: "underline", color:"#F6BE00" }} href={url.href} rel="noreferrer" target="_blank">{word.replace("\n","")}</a>
+                    );
+                  } catch {
+                    return word + " ";
+                  }
+                })
+              }
             </p>
             <div className="post-details-icon-wrapper">
                 <div>
