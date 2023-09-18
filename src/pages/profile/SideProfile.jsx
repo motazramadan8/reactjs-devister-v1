@@ -59,7 +59,6 @@ const SideProfile = () => {
           <div className="line"></div>
           {randomProfiles.slice(0, 3).map((randomProfile) => (
             <>
-              {console.log(randomProfile)}
               {randomProfile._id !== _id && !randomProfile?.followers?.includes(_id) ? (
                 <div key={randomProfile._id} className="suggestion-user">
                   <div className="suggestion-image">
