@@ -85,6 +85,7 @@ export function deleteProfile(userId) {
       dispatch(profileActions.setIsProfileDeleted());
       toast.success(data?.msg + "dddd", toastOptions);
       setTimeout(() => dispatch(profileActions.clearIsProfileDeleted()), 2000);
+      window.location.reload()
     } catch (error) {
       toast.warn(error.response.data.msg, toastOptions);
       dispatch(profileActions.clearLoading());
