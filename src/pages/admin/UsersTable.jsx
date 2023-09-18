@@ -31,7 +31,6 @@ const UsersTable = () => {
         swal("Account Has Been Deleted Successfully", {
           icon: "success",
         });
-        window.location.reload()
       }
     });
   };
