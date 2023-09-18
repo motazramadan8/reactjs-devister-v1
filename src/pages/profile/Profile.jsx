@@ -41,6 +41,8 @@ const Profile = () => {
     e.preventDefault();
     if (!file) 
       return toast.warn("Iamge Is Required", toastOptions);
+    if (file?.size >= 1024 * 1024) 
+      return toast.warn("Image Size Must Be Less Than 1 MB", toastOptions);
 
     const formData = new FormData()
     formData.append("image", file)
