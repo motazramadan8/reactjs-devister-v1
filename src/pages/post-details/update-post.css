@@ -21,8 +21,8 @@
 }
 .update-post-form-close {
     position: absolute;
-    top: 5px;
-    right: 5px;
+    top: -80px;
+    right: -15px;
     color: var(--red-color);
     cursor: pointer;
     font-size: 30px;

@@ -7,16 +7,28 @@ import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { createPost } from "../../redux/APIs/postsApiCall";
 import { CirclesWithBar } from "react-loader-spinner"
-import { fetchCategories } from "../../redux/APIs/categoryApiCall";
 
 const CreatePosts = () => {
   const dispatch = useDispatch();
   const { loading, isPostCreated } = useSelector((state) => state.post);
-  const { categories } = useSelector(state => state.category)
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [category, setCategory] = useState("");
+  const [tags, setTags] = useState([])
   const [file, setFile] = useState(null);
+
+  // Handle Key Down
+  const handleKeyDown = (e) => {
+    if (e.key !== 'Enter') return
+    const value = e.target.value
+    if (!value.trim()) return 
+    setTags([...tags, value])
+    e.target.value = ""
+  }
+
+  // Remove Tag
+  const removeTag = (index) => {
+    setTags(tags.filter((el, i) => i !== index))
+  }
 
   // Form Submit Handler
   const formSubmitHandler = (e) => {
@@ -27,15 +39,16 @@ const CreatePosts = () => {
     if (title.trim().length <= 2)
       return toast.warn("Title Must Be At Least 3 Character", toastOptions);
     if (title.trim().length >= 200)
-      return toast.warn("Title Must Be Less Than 3 Character", toastOptions);
+      return toast.warn("Title Must Be Less Than 200 Character", toastOptions);
     
     if (description.trim() === "")
       return toast.warn("Description Is Required", toastOptions);
     if (description.trim().length <= 10)
       return toast.warn("Description Must Be At Least 11 Character", toastOptions);
 
-    if (category.trim() === "")
+    if (tags.length === 0)
       return toast.warn("Category Is Required", toastOptions);
+
     if (!file) 
       return toast.warn("Image Is Required", toastOptions);
     if (!file.type.startsWith("image")) 
@@ -47,8 +60,7 @@ const CreatePosts = () => {
     formData.append("image", file);
     formData.append("title", title);
     formData.append("description", description);
-    formData.append("category", category);
-
+    formData.append("category", tags);
     dispatch(createPost(formData));
   };
 
@@ -58,10 +70,6 @@ const CreatePosts = () => {
       navigate("/posts");
     }
   }, [isPostCreated, navigate]);
-
-  useEffect(() => {
-    dispatch(fetchCategories())
-  }, [])
   
   return (
     <>
@@ -77,21 +85,15 @@ const CreatePosts = () => {
               onChange={(e) => setTitle(e.target.value)}
               title="Write Your Post Title"
             />
-            <select
-              className="create-post-input"
-              value={category}
-              onChange={(e) => setCategory(e.target.value)}
-              title="Choose Your Post Category"
-            >
-              <option disabled value="">
-                Select A Catefgory
-              </option>
-              {
-                categories.map(category => (
-                  <option key={category?._id} value={category?.title}>{category?.title}</option>
-                ))
-              }
-            </select>
+            <div className="tags-input-container">
+              {tags.map((tag, index) => (
+                <div className="tag-item" key={index}>
+                  <span className="text">{tag}</span>
+                  <span className="close" onClick={() => removeTag(index)}>&times;</span>
+                </div> 
+              ))}
+              <input onKeyDown={handleKeyDown} type="text" className="tags-input" placeholder="Add New Category..." />
+            </div>
             <textarea
               className="create-post-textarea"
               rows="5"

@@ -25,9 +25,13 @@ const PostItem = ({ posts, username, userId, profilePhoto }) => {
                 </div>
                 <div className="post-item-details">
                     <h4 className='post-item-title'>{posts?.title}</h4>
-                    <Link className='post-item-category' to={`/posts/category/${posts?.category}`}>
-                        {posts?.category}
-                    </Link>
+                    {
+                        posts?.category.map((item, index) => (
+                            <Link className='post-item-category' key={index} to={`/posts/category/${item}`}>
+                                {item}
+                            </Link>
+                        ))
+                    }
                 </div>
                 <p className="post-item-description">
                     {posts?.description}

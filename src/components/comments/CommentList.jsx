@@ -89,7 +89,6 @@ const CommentList = ({ postAuthor, comments }) => {
                 </div>
               )
             }
-            {console.log(comment?.user)}
             {user?._id === postAuthor || user?._id === comment?.user ? (
               <div className="comment-item-icon-wrapper">
                 <BsTrash3 className="icon" onClick={() => deleteCommentHandler(comment?._id)} />

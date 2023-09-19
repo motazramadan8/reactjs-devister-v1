@@ -1,85 +1,98 @@
-import React, { useEffect, useState } from "react"
-import "./update-post.css"
-import { AiFillCloseCircle } from "react-icons/ai"
-import { ToastContainer, toast } from "react-toastify"
-import toastOptions from "../../utils/toastOptions"
-import { useDispatch, useSelector } from "react-redux"
-import { updatePost } from "../../redux/APIs/postsApiCall"
-import { fetchCategories } from "../../redux/APIs/categoryApiCall"
+import React, { useEffect, useState } from "react";
+import "./update-post.css";
+import { AiFillCloseCircle } from "react-icons/ai";
+import { ToastContainer, toast } from "react-toastify";
+import toastOptions from "../../utils/toastOptions";
+import { useDispatch } from "react-redux";
+import { updatePost } from "../../redux/APIs/postsApiCall";
+import Footer from "../../components/footer/Footer"
 
 const UpdatePostModal = ({ setUpdatePost, post }) => {
   const [title, setTitle] = useState(post.title);
-  const [category, setCategory] = useState(post.category);
   const [description, setDescription] = useState(post.description);
-  const dispatch = useDispatch()
-  const { categories } = useSelector(state => state.category)
+  const dispatch = useDispatch();
+  const [category, setCategory] = useState(post.category);
+  const [newTag, setNewTag] = useState("");
+
+  // Handle Key Down
+  const handleKeyDown = (e) => {
+    if (e.key !== "Enter") return;
+    const value = e.target.value;
+    if (!value.trim()) return;
+    setCategory([...category, value]);
+    setNewTag("");
+  };
+
+  // Remove Tag
+  const removeTag = (index) => {
+    setCategory(category.filter((el, i) => i !== index));
+  };
 
   // Form Submit Handler
   const formSubmitHandler = (e) => {
     e.preventDefault();
-    if (title === "")
-      return toast.warn("Title Is Required", toastOptions);
-    if (category === "")
+    if (e.key === "Enter") return e.preventDefault();
+
+    if (title === "") return toast.warn("Title Is Required", toastOptions);
+    if (category.length === 0)
       return toast.warn("Category Is Required", toastOptions);
     if (description === "")
       return toast.warn("Description Is Required", toastOptions);
-    
-    dispatch(updatePost({ title, category, description }, post?._id))
-    window.location.reload()
-    setUpdatePost(false)
-  }
+  
+    const updatedCategories = [...category, newTag];
+    const updatedCategoriesFilter = updatedCategories.filter((el) => el !== "")
 
-  useEffect(() => {
-    dispatch(fetchCategories())
-  }, [])
-
+    dispatch(updatePost({ title, category: updatedCategoriesFilter, description }, post?._id));
+    setUpdatePost(false);
+  };
+  
   return (
     <>
-        <div className="update-post">
-            <form onSubmit={formSubmitHandler} className="update-post-form">
-                <abbr title="close">
-                    <AiFillCloseCircle 
-                    onClick={() => setUpdatePost(false)}
-                    className="update-post-form-close"
-                    />
-                </abbr>
-                <h1 className="update-post-title">Edit Post</h1>
-                <input 
-                type="text" 
-                className="update-post-input" 
-                placeholder="Post Title"
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
-                />
-                <select 
-                className="update-post-input"
-                value={category}
-                onChange={(e) => setCategory(e.target.value)}
-                >
-                    <option value="" disabled>
-                        Select A Category
-                    </option>
-                    {categories.map((category) => (
-                      <option key={category?._id} value={category?.title}>
-                        {category?.title}
-                      </option>
-                    ))}
-                </select>
-                <textarea 
-                className="update-post-textarea" 
-                rows="5" 
-                placeholder="Post Description"
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
-                ></textarea>
-                <button type="submit" title="Update Post" className="update-post-btn">
-                    Update
-                </button>
-            </form>
+      <section className="update-post">
+        <div className="create-post-div">
+          <h1 className="create-post-title">Update Your Post</h1>
+          <form onSubmit={formSubmitHandler} className="create-post-form" style={{ position:"relative" }}>
+            <abbr title="close">
+              <AiFillCloseCircle
+                onClick={() => setUpdatePost(false)}
+                className="update-post-form-close"
+              />
+            </abbr>
+            <input
+              type="text"
+              placeholder="Post Title"
+              className="create-post-input"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              title="Write Your Post Title"
+            />
+            <div className="tags-input-container">
+              {category.map((tag, index) => (
+                <div className="tag-item" key={index}>
+                  <span className="text">{tag}</span>
+                  <span className="close" onClick={() => removeTag(index)}>&times;</span>
+                </div> 
+              ))}
+              <input onKeyDown={handleKeyDown} type="text" className="tags-input" placeholder="Add New Category..." />
+            </div>
+            <textarea
+              className="create-post-textarea"
+              rows="5"
+              placeholder="Post Desciption"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              title="Write Your Post Desciption"
+            ></textarea>
+            <button type="submit" className="create-post-btn">
+              Update
+            </button>
+          </form>
         </div>
-        <ToastContainer />
+      </section>
+      <ToastContainer />
+      <Footer />
     </>
-  )
-}
+  );
+};
 
-export default UpdatePostModal
+export default UpdatePostModal;

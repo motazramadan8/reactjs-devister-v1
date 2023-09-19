@@ -15,7 +15,6 @@ export function fetchAllPosts() {
   };
 }
 
-
 // Fetch Posts Based On Page Number
 export function fetchPosts(pageNumber) {
   return async (dispatch) => {
@@ -52,25 +51,6 @@ export function fetchPostsBasedOnCategory(category) {
   };
 }
 
-// Create Post
-export function createPost(newPost) {
-  return async (dispatch, getState) => {
-    try {
-      dispatch(postActions.setLoading());
-      await request.post(`/api/posts`, newPost, {
-        headers: {
-          Authorization: "Bearer " + getState().auth.user.token,
-          "Content-Type": "multipart/form-data",
-        },
-      });
-      dispatch(postActions.setIsPostCreated());
-      setTimeout(() => dispatch(postActions.clearIsPostCreated()), 2000);
-    } catch (error) {
-      return toast.warn(error.response.data.msg, toastOptions);
-    }
-  };
-}
-
 // Get Single Post
 export function getSinglePost(postId) {
   return async (dispatch) => {
@@ -87,11 +67,15 @@ export function getSinglePost(postId) {
 export function toggleLikePost(postId) {
   return async (dispatch, getState) => {
     try {
-      const { data } = await request.put(`/api/posts/like/${postId}`, {}, {
-        headers: {
-          Authorization: "Bearer " + getState().auth.user.token,
+      const { data } = await request.put(
+        `/api/posts/like/${postId}`,
+        {},
+        {
+          headers: {
+            Authorization: "Bearer " + getState().auth.user.token,
+          },
         }
-      });
+      );
       dispatch(postActions.setLike(data));
     } catch (error) {
       toast.warn(error.response.data.msg, toastOptions);
@@ -106,12 +90,32 @@ export function updatePostImage(newImage, postId) {
       await request.put(`/api/posts/upload-image/${postId}`, newImage, {
         headers: {
           Authorization: "Bearer " + getState().auth.user.token,
-          "Content-Type": "multipart/form-data"
-        }
+          "Content-Type": "multipart/form-data",
+        },
       });
       toast.success("Post Image Updated Successfully", toastOptions);
     } catch (error) {
-      toast.warn(error.response.data.msg, toastOptions);
+      toast.warn(error.response?.data?.msg, toastOptions);
+    }
+  };
+}
+
+// Create Post
+export function createPost(newPost) {
+  return async (dispatch, getState) => {
+    try {
+      dispatch(postActions.setLoading());
+      await request.post(`/api/posts`, newPost, {
+        headers: {
+          Authorization: "Bearer " + getState().auth.user.token,
+          "Content-Type": "multipart/form-data",
+        },
+      });
+      dispatch(postActions.setIsPostCreated());
+      setTimeout(() => dispatch(postActions.clearIsPostCreated()), 2000);
+    } catch (error) {
+      console.log(error);
+      return toast.warn(error.response.data.msg, toastOptions);
     }
   };
 }
@@ -123,12 +127,14 @@ export function updatePost(newData, postId) {
       const { data } = await request.put(`/api/posts/${postId}`, newData, {
         headers: {
           Authorization: "Bearer " + getState().auth.user.token,
-        }
+        },
       });
       dispatch(postActions.setPost(data));
       toast.success("Post Updated Successfully", toastOptions);
+      window.location.reload()
     } catch (error) {
-      toast.warn(error.response.data.msg, toastOptions);
+      console.log(error);
+      toast.warn(error.response?.data?.msg, toastOptions);
     }
   };
 }
@@ -140,7 +146,7 @@ export function deletePost(postId) {
       const { data } = await request.delete(`/api/posts/${postId}`, {
         headers: {
           Authorization: "Bearer " + getState().auth.user.token,
-        }
+        },
       });
       dispatch(postActions.deletePost(data.postId));
     } catch (error) {
