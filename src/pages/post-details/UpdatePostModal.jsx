@@ -67,7 +67,7 @@ const UpdatePostModal = ({ setUpdatePost, post }) => {
               title="Write Your Post Title"
             />
             <div className="tags-input-container">
-              {category.map((tag, index) => (
+              {category?.split(",").map((tag, index) => (
                 <div className="tag-item" key={index}>
                   <span className="text">{tag}</span>
                   <span className="close" onClick={() => removeTag(index)}>&times;</span>
