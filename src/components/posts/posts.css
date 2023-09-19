@@ -5,6 +5,7 @@
     flex-wrap: wrap;
     flex: 9;
     position: relative;
+    overflow: hidden;
 }
 .post-item {
     width: 100%;
@@ -17,6 +18,7 @@
     align-items: flex-start;
     justify-content: space-between;
     position: relative;
+    overflow: hidden;
 }
 .post-item-image-wrapper {
     width: 100%;
