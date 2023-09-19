@@ -16,11 +16,11 @@ const UpdatePostModal = ({ setUpdatePost, post }) => {
 
   // Handle Key Down
   const handleKeyDown = (e) => {
-    if (e.key !== "Enter") return;
+    if (e.code !== 'Space') return;
     const value = e.target.value;
     if (!value.trim()) return;
     setCategory([...category, value]);
-    setNewTag("");
+    e.target.value = ""
   };
 
   // Remove Tag
