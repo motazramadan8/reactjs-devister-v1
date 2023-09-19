@@ -18,7 +18,7 @@ const CreatePosts = () => {
 
   // Handle Key Down
   const handleKeyDown = (e) => {
-    if (e.key !== 'Enter') return
+    if (e.code !== 'Space') return;
     const value = e.target.value
     if (!value.trim()) return 
     setTags([...tags, value])
@@ -77,6 +77,7 @@ const CreatePosts = () => {
         <div className="create-post-div">
           <h1 className="create-post-title">What are you thinking ?</h1>
           <form onSubmit={formSubmitHandler} className="create-post-form">
+            <label className="create-post-label" htmlFor="title">Enter Your Post Title</label>
             <input
               type="text"
               placeholder="Post Title"
@@ -84,7 +85,9 @@ const CreatePosts = () => {
               value={title}
               onChange={(e) => setTitle(e.target.value)}
               title="Write Your Post Title"
+              id="title"
             />
+            <label className="create-post-label" htmlFor="tag">Press On Space To Add Tag</label>
             <div className="tags-input-container">
               {tags.map((tag, index) => (
                 <div className="tag-item" key={index}>
@@ -92,8 +95,9 @@ const CreatePosts = () => {
                   <span className="close" onClick={() => removeTag(index)}>&times;</span>
                 </div> 
               ))}
-              <input onKeyDown={handleKeyDown} type="text" className="tags-input" placeholder="Add New Category..." />
+              <input id="tag" onKeyUp={handleKeyDown} type="text" className="tags-input" placeholder="Add New Category..." />
             </div>
+            <label className="create-post-label" htmlFor="desc">Enter Your Post Description</label>
             <textarea
               className="create-post-textarea"
               rows="5"
@@ -101,6 +105,7 @@ const CreatePosts = () => {
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               title="Write Your Post Desciption"
+              id="desc"
             ></textarea>
             <label htmlFor="file" className="create-post-upload">
               {file ? file.name : "Choose File"}
