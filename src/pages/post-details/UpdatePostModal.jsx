@@ -67,12 +67,19 @@ const UpdatePostModal = ({ setUpdatePost, post }) => {
               title="Write Your Post Title"
             />
             <div className="tags-input-container">
-              {category?.split(",").map((tag, index) => (
+              {category.includes(",") ? category?.split(",").map((tag, index) => (
                 <div className="tag-item" key={index}>
                   <span className="text">{tag}</span>
                   <span className="close" onClick={() => removeTag(index)}>&times;</span>
                 </div> 
-              ))}
+              )) : (
+                category?.map((tag, index) => (
+                  <div className="tag-item" key={index}>
+                    <span className="text">{tag}</span>
+                    <span className="close" onClick={() => removeTag(index)}>&times;</span>
+                  </div> 
+                ))
+              )}
               <input onKeyDown={handleKeyDown} type="text" className="tags-input" placeholder="Add New Category..." />
             </div>
             <textarea
