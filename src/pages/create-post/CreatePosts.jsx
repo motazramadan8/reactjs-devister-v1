@@ -15,14 +15,14 @@ const CreatePosts = () => {
   const [description, setDescription] = useState("");
   const [tags, setTags] = useState([])
   const [file, setFile] = useState(null);
+  const [text, setText] = useState("")
 
   // Handle Key Down
   const handleKeyDown = (e) => {
-    if (e.key !== 'Enter') return;
-    const value = e.target.value
+    const value = text
     if (!value.trim()) return 
     setTags([...tags, value])
-    e.target.value = ""
+    setText("")
   }
 
   // Remove Tag
@@ -95,7 +95,8 @@ const CreatePosts = () => {
                   <span className="close" onClick={() => removeTag(index)}>&times;</span>
                 </div> 
               ))}
-              <input id="tag" onKeyUp={handleKeyDown} type="text" className="tags-input" placeholder="Add New Category..." />
+              <input id="tag" value={text} onChange={(e) => setText(e.target.value)} type="text" className="tags-input" placeholder="Add New Category..." />
+              <button className="tag-submit" onClick={handleKeyDown}>Add</button>
             </div>
             <label className="create-post-label" htmlFor="desc">Enter Your Post Description</label>
             <textarea
