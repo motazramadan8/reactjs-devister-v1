@@ -18,7 +18,7 @@ const CreatePosts = () => {
 
   // Handle Key Down
   const handleKeyDown = (e) => {
-    if (e.code !== 'Space') return;
+    if (e.code !== 'Space' || e.key !== 'Enter') return;
     const value = e.target.value
     if (!value.trim()) return 
     setTags([...tags, value])
