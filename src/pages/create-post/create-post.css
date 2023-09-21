@@ -94,6 +94,15 @@
     margin: 5px 0;
 }
 
+.tag-submit {
+    background-color: var(--logo-color);
+    border: none;
+    outline: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
 .create-post-upload {
     background-color: var(--body-color);
     color: var(--logo-color);
