@@ -65,7 +65,7 @@ const CommentList = ({ postAuthor, comments }) => {
                   />
                 </div>
                 <div className="comment-item-author-username">
-                  <Link style={{marginLeft: "-50px"}} to={`/profile/${comment?.user?._id}`}>{comment?.username}</Link>
+                  <Link style={{marginLeft: "-50px"}} to={`/profile/${comment?._id}`}>{comment?.username}</Link>
                 </div>
               </div>
               <div className="comment-item-author-time">
