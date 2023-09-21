@@ -13,15 +13,16 @@ const UpdatePostModal = ({ setUpdatePost, post }) => {
   const dispatch = useDispatch();
   const [category, setCategory] = useState(post.category);
   const [newTag, setNewTag] = useState("");
+  const [text, setText] = useState("")
 
   // Handle Key Down
   const handleKeyDown = (e) => {
-    if (e.code !== 'Space') return;
-    const value = e.target.value;
-    if (!value.trim()) return;
-    setCategory([...category, value]);
-    e.target.value = ""
-  };
+    e.preventDefault()
+    const value = text
+    if (!value.trim()) return 
+    setCategory([...category, value])
+    setText("")
+  }
 
   // Remove Tag
   const removeTag = (index) => {
@@ -36,6 +37,8 @@ const UpdatePostModal = ({ setUpdatePost, post }) => {
     if (title === "") return toast.warn("Title Is Required", toastOptions);
     if (category.length === 0)
       return toast.warn("Category Is Required", toastOptions);
+    if (category.length > 10)
+      return toast.warn("Categories Must Be Less Than 10 Categories", toastOptions);
     if (description === "")
       return toast.warn("Description Is Required", toastOptions);
   
@@ -80,7 +83,8 @@ const UpdatePostModal = ({ setUpdatePost, post }) => {
                   </div> 
                 ))
               )}
-              <input onKeyDown={handleKeyDown} type="text" className="tags-input" placeholder="Add New Category..." />
+              <input id="tag" value={text} onChange={(e) => setText(e.target.value)} type="text" className="tags-input" placeholder="Add New Category..." />
+              <button className="tag-submit" onClick={handleKeyDown}>Add</button>
             </div>
             <textarea
               className="create-post-textarea"

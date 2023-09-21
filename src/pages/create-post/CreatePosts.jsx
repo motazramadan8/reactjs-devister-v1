@@ -48,6 +48,8 @@ const CreatePosts = () => {
 
     if (tags.length === 0)
       return toast.warn("Category Is Required", toastOptions);
+    if (tags.length > 10)
+      return toast.warn("Categories Must Be Less Than 10 Categories", toastOptions);
 
     if (!file) 
       return toast.warn("Image Is Required", toastOptions);

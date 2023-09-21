@@ -14,7 +14,7 @@ export function createComment(newComment) {
         },
       });
       dispatch(commentActions.setComments(data));
-      window.location.reload()
+      window.location.reload();
     } catch (error) {
       toast.warn(error.response.data.msg, toastOptions);
     }
@@ -35,7 +35,7 @@ export function updateComment(comment, commentId) {
         }
       );
       dispatch(postActions.updateCommentPost(data));
-      window.location.reload()
+      window.location.reload();
       toast.success("Comment Updated Successfully", toastOptions);
     } catch (error) {
       toast.warn(error.response.data.msg, toastOptions);
@@ -52,9 +52,9 @@ export function deleteComment(commentId) {
           Authorization: "Bearer " + getState().auth.user.token,
         },
       });
-      dispatch(commentActions.deleteComment(commentId))
+      dispatch(commentActions.deleteComment(commentId));
       dispatch(postActions.setIsCommentDeleted());
-      window.location.reload()
+      window.location.reload();
     } catch (error) {
       toast.warn(error.response.data.msg, toastOptions);
     }
@@ -67,12 +67,34 @@ export function getAllComments() {
     try {
       const { data } = await request.get(`/api/comments`, {
         headers: {
-          Authorization: "Bearer " + getState().auth.user.token,
+          Authorization: "Bearer " + getState()?.auth?.user?.token,
         },
       });
       dispatch(commentActions.setComments(data));
     } catch (error) {
-      toast.warn(error.response.data.msg, toastOptions);
+      // toast.warn(error.response.data.msg, toastOptions);
+      console.log(error);
+    }
+  };
+}
+
+// Toggle Like Post
+export function toggleLikeComment(commentId) {
+  return async (dispatch, getState) => {
+    try {
+      const { data } = await request.put(
+        `/api/comments/like/${commentId}`,
+        {},
+        {
+          headers: {
+            Authorization: "Bearer " + getState().auth.user.token,
+          },
+        }
+      );
+      dispatch(postActions?.setLikeComment(data));
+      window.location.reload()
+    } catch (error) {
+      console.log(error);
     }
   };
 }

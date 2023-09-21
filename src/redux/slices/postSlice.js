@@ -11,6 +11,7 @@ const postSlice = createSlice({
     post: null,
     isCommentDeleted: false,
     isCommentUpdated: false,
+    isCommentLike: [],
   },
   reducers: {
     setPosts(state, action) {
@@ -40,7 +41,9 @@ const postSlice = createSlice({
       state.post = action.payload;
     },
     setLike(state, action) {
-      state.post.likes = action.payload.likes;
+      if (state.post?.likes) {
+        state.post.likes = action.payload.likes;
+      }
     },
     deletePost(state, action) {
       state.posts = state.posts.filter((p) => p._id !== action.payload);
@@ -63,6 +66,11 @@ const postSlice = createSlice({
     },
     setIsCommentUpdated(state) {
       state.isCommentUpdated = true;
+    },
+    setLikeComment(state, action) {
+      if (state?.post?.comments?.likes) {
+        state.post.comments.likes.push(action.payload.likes);
+      }
     },
   },
 });

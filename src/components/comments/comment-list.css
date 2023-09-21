@@ -54,6 +54,14 @@
     font-size: 17px;
     max-width: 650px;
 }
+.comment-item-like{
+    font-size: 22px;
+}
+.comment-item-like .icon {
+    cursor: pointer;
+    margin-bottom: -3px;
+    margin-right: 3px;
+}
 .comment-item-icon-wrapper {
     padding: 10px;
     font-size: 18px;

@@ -8,7 +8,6 @@
     margin-top: 20px;
     margin-bottom: 20px;
     border-bottom: 2px solid var(--main-color);
-    overflow: hidden;
 }
 .not-found-posts {
     font-size: 50px;
@@ -17,7 +16,6 @@
     left: 50%;
     translate: -50% -50%;
     text-align: center;
-    overflow: hidden;
 }
 .home-container {
     padding: 0 30px;

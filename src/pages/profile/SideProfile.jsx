@@ -12,6 +12,7 @@ const SideProfile = () => {
   const { _id } = user && JSON.parse(user);
   const dispatch = useDispatch();
   const [followText, setFollowText] = useState(false)
+  const [heightState, setHeightState] = useState(false)
 
   useEffect(() => {
     dispatch(getUserProfile(_id));
@@ -100,7 +101,7 @@ const SideProfile = () => {
                   </div>
                 </div>
               ) : (
-                ""
+                  ""
               )}
             </>
           ))}

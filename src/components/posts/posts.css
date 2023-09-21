@@ -5,7 +5,6 @@
     flex-wrap: wrap;
     flex: 9;
     position: relative;
-    overflow: hidden;
 }
 .post-item {
     width: 100%;
@@ -18,11 +17,9 @@
     align-items: flex-start;
     justify-content: space-between;
     position: relative;
-    overflow: hidden;
 }
 .post-item-image-wrapper {
     width: 100%;
-    margin-bottom: 15px;
 }
 .post-item-image {
     width: 100%;
@@ -33,6 +30,42 @@
 .post-item-info-wrapper {
     width: 100%;
 }
+
+.post-reach {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-top: -30px;
+}
+
+.post-details-iconn-wrapper {
+    padding: 3px 10px;
+    transition: 0.4s;
+    margin-bottom: 16px;
+    margin-right: 20px;
+}
+.post-details-iconn-wrapper:hover {
+    color: var(--logo-color);
+    background-color: var(--btn-color);
+    border-radius: 10px;
+}
+
+.post-details-iconn-wrapper div small {
+    color: var(--white-color);
+    font-size: 20px;
+}
+
+.comments-length a {
+    font-size: 20px;
+    padding: 4px 8px;
+    transition: 0.4s;
+}
+
+.comments-length a:hover {
+    background-color: var(--btn-color);
+    border-radius: 10px;
+}
+
 .post-item-info  {
     display: block;
     align-items: center;
@@ -88,6 +121,7 @@
     cursor: pointer;
     margin-left: -3px;
     margin: 0 4px 0 0;
+    flex-wrap: wrap;
 }
 .post-item-description {
     font-size: 15px;
@@ -110,6 +144,20 @@
 }
 
 /* Responsive */
+@media (max-width: 1270px) {
+    .post-item-category {
+        color: var(--white-color);
+        background-color: var(--btn-color);
+        padding: 2px 7px;
+        border-radius: 15px;
+        font-size: 13px;
+        font-weight: 200;
+        cursor: pointer;
+        margin-left: -3px;
+        margin: 0 4px 0 0;
+        flex-wrap: wrap;
+    }
+}
 @media (max-width: 720px) {
     .post-item {
         padding: 10px;
@@ -128,6 +176,15 @@
         text-transform: capitalize;
         position: absolute;
         left: 65px;
+    }
+    .comments-length a {
+        font-size: 20px;
+        position: absolute;
+        bottom: 15px;
+        padding: 2px 4px;
+        margin-left: 10px;
+        margin-bottom: 5px;
+        transition: 0.4s;
     }
 }
 

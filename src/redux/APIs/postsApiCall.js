@@ -76,9 +76,10 @@ export function toggleLikePost(postId) {
           },
         }
       );
-      dispatch(postActions.setLike(data));
+        dispatch(postActions?.setLike(data));
     } catch (error) {
-      toast.warn(error.response.data.msg, toastOptions);
+      // toast.warn(error.response.data.msg, toastOptions);
+      console.log(error);
     }
   };
 }
