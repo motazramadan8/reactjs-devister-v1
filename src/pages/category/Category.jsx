@@ -4,9 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import "./category.css";
 import Footer from "../../components/footer/Footer";
 import PostList from "../../components/posts/PostList";
-import Sidebar from "../../components/sidebar/Sidebar";
 import { fetchPostsBasedOnCategory } from "../../redux/APIs/postsApiCall";
-import { categories } from "../../dummyData";
 import SideProfile from "../profile/SideProfile";
 
 
@@ -39,7 +37,6 @@ const Category = () => {
             <div className="category-container">
               {user && <SideProfile />}
               <PostList posts={postsCate} />
-              <Sidebar categories={categories} />
             </div>
           </>
         )}
