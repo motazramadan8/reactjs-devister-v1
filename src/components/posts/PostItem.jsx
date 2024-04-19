@@ -72,7 +72,7 @@ const PostItem = ({ posts, username, userId, profilePhoto }) => {
               alt="post"
               className='post-item-image'
               onClick={() => setFullPhoto(true)}
-              style={{ cursor: "pointer", marginTop: posts?.description.length < 80 ? "-20px" : "-5px", marginBottom: posts?.description.length > 80 && "15px" }}
+              style={{ cursor: "pointer", objectFit: "cover", marginTop: posts?.description.length < 80 ? "-20px" : "-5px", marginBottom: posts?.description.length > 80 && "15px" }}
             />
         </div>
         {fullPhoto  && <FullPostImage setFullPhoto={setFullPhoto} post={posts} />}
