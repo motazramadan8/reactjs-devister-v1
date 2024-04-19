@@ -14,7 +14,7 @@ export function createComment(newComment) {
         },
       });
       dispatch(commentActions.setComments(data));
-      window.location.reload();
+      // window.location.reload();
     } catch (error) {
       toast.warn(error.response.data.msg, toastOptions);
     }
