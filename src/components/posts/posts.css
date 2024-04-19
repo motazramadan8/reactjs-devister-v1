@@ -5,6 +5,7 @@
     flex-wrap: wrap;
     flex: 9;
     position: relative;
+    width: 100%;
 }
 .post-item {
     width: 100%;
