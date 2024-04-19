@@ -23,7 +23,7 @@ const CommentList = ({ postAuthor, comments }) => {
 
   useEffect(() => {
     dispatch(getAllComments());
-  }, []);
+  }, [comments]);
 
   // Update Comment Handler
   const updateCommentHandler = (comment) => {
